@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Photon Blocks</title>
+<style>
+  :root { --w: 680px; --h: 560px; }
+  html,body{margin:0;background:#0a0f1f;font-family:system-ui,Segoe UI,Roboto,Arial}
+  body{width:var(--w); height:var(--h); overflow:hidden}
+  .wrap{display:grid;place-items:center;width:100%;height:100%}
+  canvas{display:block; image-rendering:pixelated; background:#0a0f1f; outline:none}
+
+  #settingsBtn{
+    position:fixed; top:8px; right:10px;
+    background:#0e1a2b; color:#cfe5ff; border:1px solid #3b6aa6;
+    border-radius:8px; padding:6px 10px; font-size:12px; cursor:pointer;
+  }
+  #settingsPanel{
+    position:fixed; top:40px; right:10px; width:260px;
+    background:#0e1a2b; color:#dbe8ff; border:1px solid #3b6aa6;
+    border-radius:10px; padding:10px; display:none;
+    box-shadow:0 10px 22px rgba(0,0,0,.5);
+    font-size:13px; line-height:1.4;
+  }
+  #settingsPanel h3{ margin:4px 0 8px 0; font-size:14px; color:#bcd7ff; }
+  #settingsPanel label{ display:flex; align-items:center; gap:8px; margin:6px 0; }
+  #settingsPanel .row{ display:flex; justify-content:space-between; align-items:center; margin:6px 0; }
+  #settingsPanel .btns{ display:flex; gap:8px; margin-top:8px; }
+  #settingsPanel button{
+    background:#143054; color:#dbe8ff; border:1px solid #3b6aa6; border-radius:8px; padding:6px 10px; cursor:pointer;
+  }
+  small{opacity:.7}
+</style>
+</head>
+<body>
+  <button id="settingsBtn" title="Settings">Settings</button>
+  <div id="settingsPanel">
+    <h3>Settings</h3>
+    <label><input type="checkbox" id="optShadow" checked /> Show shadow piece</label>
+    <label><input type="checkbox" id="optParticles" checked /> Particles / bursts</label>
+    <label><input type="checkbox" id="optGridFx" checked /> Animated grid glow</label>
+    <label><input type="checkbox" id="optOutline" checked /> Board outline</label>
+    <label><input type="checkbox" id="optCRT" /> CRT overlay</label>
+
+    <label><input type="checkbox" id="optCinematic" checked /> Shockwaves + flashes</label>
+
+    <div class="row">
+      <span>Soft drop speed</span>
+      <select id="optSoftDrop">
+        <option value="slow">Slow</option>
+        <option value="normal" selected>Normal</option>
+        <option value="fast">Fast</option>
+      </select>
+    </div>
+
+    <div class="btns">
+      <button id="applySettings">Apply</button>
+      <button id="closeSettings">Close</button>
+      <button id="resetSettings" title="Restore defaults">Reset</button>
+    </div>
+    <div style="margin-top:6px"><small>Controls: Arrow keys / WASD, Space hard drop, R restart, Esc close.</small></div>
+  </div>
+
+  <div class="wrap">
+    <canvas id="game" tabindex="0"></canvas>
+  </div>
+
+  <script src="tetris.js"></script>
+</body>
+</html>
